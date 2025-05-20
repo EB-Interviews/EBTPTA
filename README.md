@@ -31,7 +31,7 @@ In a virtualenv, run:
 
    * Dockerize the service
    * Connect to https://travelperk-candidates.signin.aws.amazon.com/console and
-     sign in with the credentials you got from our HR team and deploy a cluster
+     sign in with the credentials you got from our team and deploy a cluster
      with a single service and 2 replicas of this application (i.e.  with one
      task definition and two running tasks).
    * Terraform the deployment. Please use this repository for references
@@ -57,14 +57,13 @@ the service you have deployed.
   * We recommend to try to run the application dockerized locally on your
     computer before starting the first task.
   * When doing the CI/CD part: DON'T CREATE PULL REQUEST ON THE ORIGINAL
-    REPOSITORY.  This is the default behavior in GitHub and it will expose your
+    REPOSITORY. This is the default behavior in GitHub and it will expose your
     work to others!
   * For the same reason, please avoid calling your repo `travelperk-whatever`.
-  * We are still calibrating the assessment, and you may not have time to
-    finish everything in the allocated time. This is fine. If it takes more
+  * You may not have time to finish everything in the allocated time. This is fine. If it takes more
     than 4 hours you can leave the work as it is and write down what your next
     steps would be. If you want to spend two days or a week, up to you. But we
-    don't want you to waste more of you time.
+    don't want you to waste more of your time.
   * This is not a speed test. Please don't worry if you don't finish it. The main
     point of the assessment is to have an overall idea on how you work, what are your
     priorities, and to open a conversation on how you'd go further in case we wanted
