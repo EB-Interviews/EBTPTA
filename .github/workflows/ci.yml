@@ -1,0 +1,61 @@
+name: Python CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+# Give the GITHUB_TOKEN write permissions to allow OIDC authentication
+#permissions:
+#  id-token: write
+#  contents: read
+
+#env:
+#  ECR_REPOSITORY: "travelperk-test"
+#  AWS_REGION: "us-east-2"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      #- name: Configure AWS credentials
+      #  uses: aws-actions/configure-aws-credentials@v4
+      #  with:
+      #    role-to-assume: arn:aws:iam::<aws_account_id>:role/<your_iam_role_name>
+      #    aws-region: ${{ env.AWS_REGION }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+          pip install flake8
+
+      - name: Lint with flake8
+        run: |
+          flake8 . --count --exit-zero --max-line-length=127 --statistics
+
+      - name: Run tests with pytest
+        run: |
+          pytest test/
+
+      # The following steps are commented out for now.
+      # Uncomment them when you are ready to build and push the Docker image to ECR.
+      #- name: Login to Amazon ECR
+      #  id: login-ecr
+      #  uses: aws-actions/amazon-ecr-login@v2
+      #
+      #- name: Docker build and push to ECR
+      #  env:
+      #    ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+      #    IMAGE_TAG: ${{ github.sha }}
+      #  run: |
+      #    docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+      #    docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
