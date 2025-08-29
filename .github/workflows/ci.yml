@@ -44,7 +44,7 @@ jobs:
 
       - name: Run tests with pytest
         run: |
-          pytest test/
+          pytest tests/
 
       # The following steps are commented out for now.
       # Uncomment them when you are ready to build and push the Docker image to ECR.
